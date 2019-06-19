@@ -13,7 +13,6 @@ RSpec.describe Book do
     it {is_expected.to have_db_column(:author_id).of_type(:integer)}
     it {is_expected.to have_db_column(:category_id).of_type(:integer)}
     it {is_expected.to have_db_column(:publisher_id).of_type(:integer)}
-
   end
 
   context "associations" do
@@ -24,10 +23,11 @@ RSpec.describe Book do
     it {is_expected.to have_many(:likes).with_foreign_key(:book_id)}
     it {is_expected.to have_many(:ratings).with_foreign_key(:book_id)}
     it {is_expected.to have_many(:borrow_details).with_foreign_key(:book_id)}
+    it {is_expected.to have_many(:followings).with_foreign_key(:book_id)}
   end
 
   describe "#get_average_rating" do
-    let(:book_1) {FactoryBot.create :book, author_id: author_1.id, category_id: category_1.id, publisher_id: publisher_1.id}
+    let!(:book_1) {FactoryBot.create :book, author_id: author_1.id, category_id: category_1.id, publisher_id: publisher_1.id}
     let!(:rating_1) {FactoryBot.create :rating, user_id: user_1.id, book_id: book_1.id}
     let!(:rating_2) {FactoryBot.create :rating, rating: 6.0, user_id: user_1.id, book_id: book_1.id}
     it {expect(book_1.get_average_rating ).to eql(5.5)}

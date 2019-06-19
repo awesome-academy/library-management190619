@@ -15,6 +15,6 @@ RSpec.describe Category do
 
   context "associations" do
     it {is_expected.to have_many(:books).with_foreign_key(:category_id)}
-    it {is_expected.to have_many(:categories).with_foreign_key(:parent_category_id)}
+    it {is_expected.to have_many(:categories).with_foreign_key(:category_id)}
   end
 end

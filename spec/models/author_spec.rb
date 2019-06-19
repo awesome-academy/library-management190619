@@ -15,5 +15,6 @@ RSpec.describe Author do
 
   context "associations" do
     it {is_expected.to have_many(:books).with_foreign_key(:author_id)}
+    it {is_expected.to have_many(:followings).with_foreign_key(:author_id)}
   end
 end
