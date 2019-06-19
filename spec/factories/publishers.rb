@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :publisher do
-    name { "MyString" }
+    name {FFaker::Name.name}
   end
 end
