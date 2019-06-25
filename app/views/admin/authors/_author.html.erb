@@ -1,0 +1,9 @@
+<tr>
+  <td><%= author.name %></td>
+  <td><%= author.gender %></td>
+  <td><%= author.date_of_birth %></td>
+  <td>
+    <%= link_to t("edit"), edit_admin_author_path(id: author.id), class: "btn btn-warning" %>
+    <%= link_to t("delete"), delete_author_path(id: author.id), method: :delete, class: "btn btn-danger", data: { confirm: t("you_sure") } %>
+  </td>
+</tr>
