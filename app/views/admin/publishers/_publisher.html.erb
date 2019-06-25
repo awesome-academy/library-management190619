@@ -1,0 +1,7 @@
+<tr>
+  <td><%= publisher.name %></td>
+  <td>
+    <%= link_to t("edit"), edit_admin_publisher_path(id: publisher.id), class: "btn btn-warning" %>
+    <%= link_to t("delete"), delete_publisher_path(id: publisher.id), method: :delete, class: "btn btn-danger", data: { confirm: t("you_sure") } %>
+  </td>
+</tr>

@@ -1,0 +1,11 @@
+<tr>
+  <td><%= user.email %></td>
+  <td><%= user.name %></td>
+  <td><%= user.is_admin %></td>
+  <td>
+    <%= link_to t("delete"), delete_user_path(id: user.id), method: :delete, class: "btn btn-danger", data: { confirm: t("you_sure") } %>
+    <% if !user.is_admin %>
+      <%= link_to t(".grant_as_admin"), grant_admin_path(id: user.id),method: :post, class: "btn btn-warning" %>
+    <% end %>
+  </td>
+</tr>
