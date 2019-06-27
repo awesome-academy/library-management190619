@@ -1,0 +1,14 @@
+<tr>
+  <td class="product-remove">
+    <p><%= borrow_detail.book_name %></p>
+  </td>
+  <td class="t-product-name">
+    <p><%= borrow_detail.request_date_from %></p>
+  </td>
+  <td class="product-edit">
+    <p><%= borrow_detail.request_date_to %></p>
+  </td>
+  <td class="product-unit-price">
+    <%= link_to t("delete"), unborrow_book_path(book_id: borrow_detail.book_id), class: "btn btn-danger", method: :delete, data: { confirm: t("you_sure") },  remote: true %>
+  </td>
+</tr>

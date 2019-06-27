@@ -1,0 +1,85 @@
+<div class="single-product-area section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-7">
+        <div class="single-product-image-inner">
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="one">
+              <%= image_tag @book.picture.url %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-5">
+        <div class="single-product-details single-product-custom">
+          <h2><%= @book.name %></h2>
+          <div class="single-product-categories">
+            <label><%= t ".author" %>.</label>
+            <span><%= link_to @book.author_name, author_path(id: @book.author_id)%></span>
+          </div>
+          <div class="single-product-categories">
+            <span class="inline-span"><%= rating_for @book, :overview, star: 5, disable_after_rate: false %>
+            </span>
+          </div>
+          <div class="single-product-categories">
+            <label><%= t ".category" %>:</label>
+            <span><%= @book.category_name %></span>
+          </div>
+          <div class="social-share">
+            <label><%= t ".share" %></label>
+            <ul class="social-share-icon">
+              <li><a href="#"><i class="flaticon-social"></i></a></li>
+            </ul>
+          </div>
+          <div class="single-product-categories">
+            <% if current_user %>
+              <a class="btn btn-info btn-block" data-toggle="modal" data-target="#comment-modal"><%= t ".comment" %></a></b>
+            <% else %>
+              <a class="btn btn-info btn-block" data-toggle="modal" data-target="#login-request-modal"><%= t ".comment" %></a>
+            <% end %>
+          </div>
+          <br>
+          <div class="single-product-categories">
+            <%= render "vote_form", book: @book %>
+          </div>
+          <br>
+          <% if user_signed_in? %>
+            <% if !current_user.borrowed @book %>
+              <div class="single-product-categories borrow-book-area">
+                <%= render "borrow_details/new_borrow", book_id: @book.id %>
+              </div>
+            <% else %>
+              <div class="single-product-categories">
+                <h3><%= t".notify_borrowed" %></h3>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= render "comments/comment_modal", object: @comment %>
+    <%= render "devise/sessions/login_modal"%>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="p-details-tab-content">
+          <div class="p-details-tab">
+            <ul class="p-details-nav-tab" role="tablist">
+              <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab"><%= t ".review" %></a></li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+          <div class="tab-content review">
+            <div role="tabpanel" class="tab-pane active" id="data">
+              <table class="table-data-sheet">
+                <tbody>
+                  <%= render @comments %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

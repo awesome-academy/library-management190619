@@ -1,0 +1,14 @@
+<div id="vote_form">
+  <% if user_signed_in? %>
+    <% if (current_user.voted_down_on? @book) || check_vote(current_user, @book) %>
+      <%= link_to book_votes_path(@book), class: "btn btn-warning btn-block", method: :post, remote: true do %>
+        <span class="glyphicon glyphicon-heart-empty"><%= t ".vote_this_book"%></span>
+      <% end %>
+    <% else %>
+      <%= link_to book_vote_path(@book, 0), class: "btn btn-danger btn-block", method: :delete, remote: true do %>
+        <span class="glyphicon glyphicon-heart"><%= t".unvote_this_book" %></span>
+      <% end %>
+    <% end %>
+  <% end %>
+  <p><%= t ".number_of_votes" %> <%= @book.get_upvotes.size %></p>
+</div>

@@ -1,0 +1,28 @@
+<div class="shopping-cart-area section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="wishlist-table-area table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th class="t-product-name"><%= t ".book_name" %></th>
+                  <th class="product-unit-price"><%= t ".request_date_from" %></th>
+                  <th class="product-unit-price"><%= t ".request_date_to" %></th>
+                  <th class="product-remove"><%= t ".remove" %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render @borrow_details %>
+              </tbody>
+            </table>
+          </div>
+          <div class="shopingcart-bottom-area">
+            <div class="shopingcart-bottom-area pull-right">
+              <%= link_to t(".borrow_this_books"), borrow_books_path(borrow_id: @borrow.id), method: :patch %></a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

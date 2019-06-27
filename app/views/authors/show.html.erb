@@ -1,0 +1,38 @@
+<div class="single-product-area section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-7">
+        <div class="single-product-image-inner">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="one">
+              <a class="venobox" href="img/single-product/bg-1.jpg" data-gall="gallery" title="">
+                <%= image_tag @author.picture.url %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-5">
+        <div class="single-product-details single-product-custom">
+          <h2><%= @author.name %></h2>
+          <p><%= @author.date_of_birth %></p>
+        </div>
+        <div class="single-product-categories">
+          <label><%= t ".number_of_books" %></label>
+          <span><%= @author.books.size %></span>
+        </div>
+        <div class="single-product-categories">
+          <label><%= t ".number_of_followings" %></label>
+          <span><%= @author.followers_count %></span>
+        </div>
+        <div class="single-product-categories">
+          <% if current_user.following?(@author) %>
+            <%= link_to t(".following"), {controller: :users, action: :unfollow_author, id: @author.id}, method: :post, class: "btn btn-info", remote: true %>
+          <% else %>
+            <%= link_to t(".follow"), {controller: :users, action: :follow_author, id: @author.id}, method: :post, class: "btn btn-info", remote: true %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
